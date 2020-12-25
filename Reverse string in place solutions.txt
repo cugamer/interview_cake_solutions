@@ -1,0 +1,39 @@
+def reverse!(string)
+  return '' if string.empty?
+
+  (string.length / 2).times do |i|
+    held = string[i]
+    string[i] = string[string.length - i - 1]
+    string[string.length - i - 1] = held
+  end
+
+  string
+end
+
+# Tests
+
+def run_tests
+  desc = 'empty string'
+  string = ''
+  reverse!(string)
+  expected = ''
+  assert_equal(string, expected, desc)
+
+  desc = 'single character string'
+  string = 'A'
+  reverse!(string)
+  expected = 'A'
+  assert_equal(string, expected, desc)
+
+  desc = 'longer string'
+  string = 'ABCDE'
+  reverse!(string)
+  expected = 'EDCBA'
+  assert_equal(string, expected, desc)
+end
+
+def assert_equal(a, b, desc)
+  puts "#{desc} ... #{a == b ? 'PASS' : "FAIL: #{a.inspect} != #{b.inspect}"}"
+end
+
+run_tests
